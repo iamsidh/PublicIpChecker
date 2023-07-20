@@ -1,0 +1,62 @@
+package ipChecker;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
+public class CheckIP {
+
+
+	public static String getOldIp() {
+
+		String oldip = null;
+
+		File f = new File("c:\\ipchecker\\publicip.txt");
+
+		if (f.exists()) {
+
+			try {
+				Scanner sc = new Scanner(f);
+				while (sc.hasNext()) {
+
+					oldip = sc.next();
+				}
+				sc.close();
+				return oldip;
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+		return null;
+	}
+
+	public static void checkandUpdateNewIP() {
+
+		if (getOldIp()!=null && getOldIp().equals(IPChecker.getPublicIP())) {
+
+			Utils.writeToLog(getLocalDateTime.dateTime(),
+					"		" + "Ips are same" + " " + getOldIp() + " " + IPChecker.getPublicIP());
+		} else {
+			
+			try {
+				FileWriter myWriter = new FileWriter("C:\\ipchecker\\publicip.txt", false);
+				BufferedWriter br = new BufferedWriter(myWriter);
+				br.write(IPChecker.getPublicIP());
+				Utils.writeToLog(getLocalDateTime.dateTime(), "		" + "New IP Found : " + IPChecker.getPublicIP());
+				br.close();
+				myWriter.close();
+				TelegramAPIBot.sendTelegram(IPChecker.getPublicIP());
+			} catch (IOException e) {
+				System.out.println("An error occurred while writing public ip.");
+				e.printStackTrace();
+			}
+
+
+		}
+	}
+
+}
