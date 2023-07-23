@@ -17,6 +17,7 @@ public class TelegramAPIBot {
 		Process process = Runtime.getRuntime().exec(command);
 		process.getInputStream();
 	}
+	
 
 	/*private static String getToken() {
 
@@ -46,7 +47,7 @@ public class TelegramAPIBot {
 		return null;
 	}*/
 	
-	private static String getCredentials(String a) {
+	public static String getCredentials(String a) {
 		
 		Properties prop = new Properties();
 
@@ -60,10 +61,12 @@ public class TelegramAPIBot {
 
         try {
 			prop.load(fis);
+			return prop.getProperty(a);
 		} catch (IOException e) {
 			e.printStackTrace();
+			return null;
 		}
-        return prop.getProperty(a);
+        
 	}
 
 }

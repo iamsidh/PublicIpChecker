@@ -1,9 +1,12 @@
 package ipChecker;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 public class getLocalDateTime {
+
+	static String date = null;
 
 	private static String getLocalDate() {
 
@@ -23,6 +26,7 @@ public class getLocalDateTime {
 	public static String dateTime() {
 
 		String dateTime = getLocalDate() + " " + getLocalTime();
+		date = getLocalDate();
 
 		return dateTime;
 

@@ -20,8 +20,10 @@ public class Utils {
 
 	public static void writeToLog(String a, String b) {
 
+		String logpath = String.format("C:\\ipchecker\\%s_publicip.log", getLocalDateTime.date);
+
 		try {
-			FileWriter myWriter = new FileWriter("C:\\ipchecker\\publicip.log", true);
+			FileWriter myWriter = new FileWriter(logpath, true);
 			BufferedWriter br = new BufferedWriter(myWriter);
 			br.write(a + " " + b + "\n");
 			br.close();
@@ -57,14 +59,14 @@ public class Utils {
 			try {
 				f.createNewFile();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 		}
 	}
 
 	public static boolean txtFileExist() {
-		
+
 		directoryCreator();
 		File f = new File("c:\\ipchecker\\publicip.txt");
 

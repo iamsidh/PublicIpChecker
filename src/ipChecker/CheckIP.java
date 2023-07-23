@@ -1,4 +1,5 @@
 package ipChecker;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -7,7 +8,6 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class CheckIP {
-
 
 	public static String getOldIp() {
 
@@ -26,7 +26,7 @@ public class CheckIP {
 				sc.close();
 				return oldip;
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 
@@ -36,12 +36,17 @@ public class CheckIP {
 
 	public static void checkandUpdateNewIP() {
 
-		if (getOldIp()!=null && getOldIp().equals(IPChecker.getPublicIP())) {
+		if (IPChecker.getPublicIP()==null) {
+
+			Utils.writeToLog(getLocalDateTime.dateTime(),"		" + "No Internet Connection Available..!");
+		}
+
+		else if (getOldIp() != null && getOldIp().equals(IPChecker.getPublicIP())) {
 
 			Utils.writeToLog(getLocalDateTime.dateTime(),
 					"		" + "Ips are same" + " " + getOldIp() + " " + IPChecker.getPublicIP());
 		} else {
-			
+
 			try {
 				FileWriter myWriter = new FileWriter("C:\\ipchecker\\publicip.txt", false);
 				BufferedWriter br = new BufferedWriter(myWriter);
@@ -54,7 +59,6 @@ public class CheckIP {
 				System.out.println("An error occurred while writing public ip.");
 				e.printStackTrace();
 			}
-
 
 		}
 	}
