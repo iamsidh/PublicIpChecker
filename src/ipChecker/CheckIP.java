@@ -44,7 +44,7 @@ public class CheckIP {
 		else if (getOldIp() != null && getOldIp().equals(IPChecker.getPublicIP())) {
 
 			Utils.writeToLog(getLocalDateTime.dateTime(),
-					"		" + "Ips are same" + " " + getOldIp() + " " + IPChecker.getPublicIP());
+					"		" + "Ips are same" + " " + getOldIp() + " , " + IPChecker.getPublicIP());
 		} else {
 
 			try {
