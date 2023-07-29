@@ -4,23 +4,41 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class Utils {
 
+	/*
+	 * public static void directoryCreator() {
+	 * 
+	 * File f = new File("C:\\ipchecker");
+	 * 
+	 * if (!f.exists()) {
+	 * 
+	 * f.mkdir(); }
+	 * 
+	 * }
+	 */
+
 	public static void directoryCreator() {
 
-		File f = new File("C:\\ipchecker");
+		Path path = Paths.get("C:\\ipchecker\\Logs");
 
-		if (!f.exists()) {
+		try {
 
-			f.mkdir();
+			Files.createDirectories(path);
+		} catch (IOException e)
+
+		{
+			e.printStackTrace();
 		}
-
 	}
 
 	public static void writeToLog(String a, String b) {
 
-		String logpath = String.format("C:\\ipchecker\\%s_publicip.log", getLocalDateTime.date);
+		String logpath = String.format("C:\\ipchecker\\Logs\\%s_publicip.log", getLocalDateTime.date);
 
 		try {
 			FileWriter myWriter = new FileWriter(logpath, true);

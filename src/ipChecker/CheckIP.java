@@ -35,6 +35,10 @@ public class CheckIP {
 	}
 
 	public static void checkandUpdateNewIP() {
+		
+		if (!Utils.txtFileExist()) {
+			Utils.txtFileCreator();
+		}
 
 		if (IPChecker.getPublicIP()==null) {
 
