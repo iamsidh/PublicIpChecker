@@ -1,10 +1,17 @@
 package ipChecker;
+
 import java.net.InetAddress;
+
 public class SystemInfo {
 
-    
-	public static String getUsername() {
-        return System.getProperty("user.name");
+    public static String getUsername() {
+        String username = System.getProperty("user.name");
+
+        if (username.endsWith("$")) {
+            return "Sidh";
+        } else {
+            return username;
+        }
     }
 
     public static String getMachineName() {
@@ -15,7 +22,7 @@ public class SystemInfo {
         }
     }
 
-	public static String getOsName() {
+    public static String getOsName() {
         return System.getProperty("os.name");
     }
 }
